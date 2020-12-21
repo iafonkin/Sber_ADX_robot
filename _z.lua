@@ -43,7 +43,7 @@ function OnCalculate(Index)
 P = Settings.Period
 	if CandleExist(Index - P *2) then
 		data(Index)
-		Res = SSMA_aray(TR)
+		Res = ssma_TR()
 	
 
 	return tonumber(Settings.Horizontal_line), Res
@@ -74,8 +74,29 @@ function data(Index)
 end
 
 
+function ssma_TR()
+	P = Settings.Period
+	local sum1 = 0
+	local sum2 = 0
+
+	for i=1, P*2 do
+		if i <= P / 2 then
+			sum1 = sum1 + TR[i]
+			sum1 = sum1 / (P/2)
+
+		else
+
+			sum2 = sum1
+			sum2 = ( (sum2*(P-1) + TR[i]) / P   
+	
+	end
+return sum2
+end
+
 function SMA_array(...)
 	local sum = 0
+	local arg = {...}
+	arg.n = select('#', ...)
 	for i=1, arg.n /2 do
 		sum = sum + arg[i]
 	end
@@ -85,6 +106,10 @@ function SMA_array(...)
 end
 
 function SSMA_aray(...)
+
+	local arg = {...}
+	arg.n = select('#', ...)
+	
 	P = Settings.Period
 	local sum1 = 0
 	local sum2 = {}
