@@ -93,7 +93,7 @@ Settings = {
         DIplus = ssma(DMplus) / ssma(TR) * 100
         DIminus = ssma(DMminus) / ssma(TR) * 100
         ADX = sma(DXi)
-        return DIplus, DIminus, ADX
+        return ADX, DIplus, DIminus
 
     end
     
